@@ -17,8 +17,8 @@ import javax.ws.rs.core.SecurityContext;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
 
-import com.sourcedevil.ref.rhoar.swarm.gateway.jwt.proxy.HwTestProxy;
-import com.sourcedevil.ref.rhoar.swarm.gateway.jwt.proxy.RecurringpaymentsProxy;
+import com.sourcedevil.ref.rhoar.swarm.gateway.jwt.proxy.RhoarRaffleCreateEntryProxy;
+import com.sourcedevil.ref.rhoar.swarm.gateway.jwt.proxy.RhoarRaffleWinnerProxy;
 
 
 
@@ -28,12 +28,12 @@ import com.sourcedevil.ref.rhoar.swarm.gateway.jwt.proxy.RecurringpaymentsProxy;
 public class APIGatewayResource {
 	
 	@Inject
-	@ConfigProperty(name = "rhoarRecurringpaymentsUrl")
-	private String rhoarRecurringpaymentstUrl;
+	@ConfigProperty(name = "rhoarRaffleWinnerUrl")
+	private String rhoarRaffleWinnerUrl;
 	
 	@Inject
-	@ConfigProperty(name = "rhoarHwUrl")
-	private String rhoarHwUrl;
+	@ConfigProperty(name = "rhoarRaffleCreateEntryUrl")
+	private String rhoarRaffleCreateEntryUrl;
 
 	
     @Context
@@ -52,38 +52,39 @@ public class APIGatewayResource {
 	}
 	
 
-	private RecurringpaymentsProxy buildRecurringpaymentsProxy() {
+	private RhoarRaffleWinnerProxy buildRhoarRaffleWinnerUrlProxy() {
 		Client client = ClientBuilder.newClient();
-		System.out.println("recurring url " + rhoarRecurringpaymentstUrl);
-		WebTarget target = client.target(rhoarRecurringpaymentstUrl);
+		System.out.println("recurring url " + rhoarRaffleWinnerUrl);
+		WebTarget target = client.target(rhoarRaffleWinnerUrl);
 		ResteasyWebTarget restEasyTarget = (ResteasyWebTarget) target;
-		return restEasyTarget.proxy(RecurringpaymentsProxy.class);
+		return restEasyTarget.proxy(RhoarRaffleWinnerProxy.class);
 	}
 	
-	private HwTestProxy buildRhoarHwUrlProxy() {
+	private RhoarRaffleCreateEntryProxy buildRhoarRaffleCreateEntryUrl() {
 		Client client = ClientBuilder.newClient();
-		System.out.println("hw url: " + rhoarHwUrl);
-		WebTarget target = client.target(rhoarHwUrl);
+		System.out.println("hw url: " + rhoarRaffleCreateEntryUrl);
+		WebTarget target = client.target(rhoarRaffleCreateEntryUrl);
 		ResteasyWebTarget restEasyTarget = (ResteasyWebTarget) target;
-		return restEasyTarget.proxy(HwTestProxy.class);
+		return restEasyTarget.proxy(RhoarRaffleCreateEntryProxy.class);
 	}
 
 	@GET
-    @Path("/recurringpayments/{phoneNumber}")
+    @Path("/raffle-winner")
     @Produces("application/json")
-    public String getRecurringpayments(@PathParam("phoneNumber") Long phone) {		
-        RecurringpaymentsProxy proxy = buildRecurringpaymentsProxy();
-        System.out.println("telefono a utilizar: " + phone);
-        String response = proxy.getRecurringpayments(phone);
+    public String apiRaffleWinner() {		
+        RhoarRaffleWinnerProxy proxy = buildRhoarRaffleWinnerUrlProxy();        
+        String response = proxy.getWinner();
         return response;
     }
 
     @GET
-    @Path("/secured/rhoar-hw-test")
+    @Path("/secured/create-entry")
     @Produces(MediaType.TEXT_PLAIN)
-    public String apihw() {
-    	HwTestProxy proxy = buildRhoarHwUrlProxy();
-        String response = proxy.hw();
+    //TODO agregar parametros faltantes
+    //TODO crear metodo sin seguridad
+    public String apiSecuredCreateEntry() {
+    	RhoarRaffleCreateEntryProxy proxy = buildRhoarRaffleCreateEntryUrl();
+        String response = proxy.createRaffleEntry();
         return response;
     }
     
@@ -94,7 +95,17 @@ public class APIGatewayResource {
     @Produces("text/plain")    
     public String holaHwTest() {       
         return "Ud esta dentro de un recurso protegido: ";
-    }    
+    }
+    
+    @GET
+    @Path("/secured/raffle-winner")
+    @Produces("application/json")    
+    public String apiSecuredRaffleWinner() {       
+    	RhoarRaffleWinnerProxy proxy = buildRhoarRaffleWinnerUrlProxy();        
+        String response = proxy.getWinner();
+        return response;
+    }
+
     
     
     @GET

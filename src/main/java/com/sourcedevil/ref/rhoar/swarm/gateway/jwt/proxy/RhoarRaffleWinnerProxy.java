@@ -5,11 +5,11 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
-public interface RecurringpaymentsProxy {
+public interface RhoarRaffleWinnerProxy {
 
-	@Path("recurringpayments/{phoneNumber}")
+	@Path("ganador")
 	@Produces("application/json")
 	@GET
-	public String getRecurringpayments(@PathParam("phoneNumber") Long phone);
+	public String getWinner();
 	
 }

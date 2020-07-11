@@ -1,5 +1,5 @@
 {
-  "realm": "jwtsec",
+  "realm": "jwt-sourcedevil",
   "bearer-only": true,
   "enable-cors": true,
   "auth-server-url": "${env.KEYCLOAK_AUTH_SERVER_URL}",  
