@@ -1,12 +1,11 @@
 {
   "realm": "jwt-sourcedevil",
+  "realm-public-key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAl3B023a8F9pXsBG0BFfxifqZckPQF+eJ2zmzgsMqoPCdw/FanlmIOqiGppyDk5ABEQEzrrXbnET7LtaBV6OzTswNSZPAMs2HtKZiuI/wG7gbCWxrl7HUW/elJHSYhmSTEYyUpePLOn01w3C0XX48p2rgPe8xiIHlUZt/I3JQky8Fg2zeK+UmdKz4xCLZGO9JDU1bgyT2+Nxpa++tbwlTOv9W8oxlYznxSaFZBtU0snYSqq+miXMWrg65KLWjSJNqsJ1jorWmy1C/U79cicRcD3L/h42vJDiFhPdONbZMkpC9u0tnYCkraIyrYMtFF2B48/wxjUOOPOqVBrf2wlDlxQIDAQAB",
   "bearer-only": true,
   "enable-cors": true,
   "auth-server-url": "${env.KEYCLOAK_AUTH_SERVER_URL}",  
   "resource": "rhoar-api-swarm-sec",
   "ssl-required": "external",
-  "enable-basic-auth": "true",
-  "credentials": {
-    "secret": "fbfdd716-ddb2-44fc-9915-956930fdce4c"
-  }  
+  "enable-basic-auth": "true"
+ 
 }
