@@ -4,4 +4,4 @@ spec:
   to:
     kind: Service
     name: ${project.artifactId}
-  host: host
+  host: rhoar-swarm-gateway-jwt-jwt-sourcedevil.10.40.2.222.nip.io

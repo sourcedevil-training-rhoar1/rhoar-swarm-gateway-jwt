@@ -13,7 +13,7 @@
 	</security-constraint>
 	<login-config>
 		<auth-method>KEYCLOAK</auth-method>
-		<realm-name>jwtsec</realm-name>
+		<realm-name>jwt-sourcedevil</realm-name>
 	</login-config>
 	<security-role>
 		<description>Acceso Restringido</description>

@@ -4,21 +4,21 @@ spec:
     spec:
       containers:
       - env:        
-         - name: rhoarRecurringpaymentsUrl
+         - name: rhoarRaffleCreateEntryUrl
            valueFrom:
              configMapKeyRef:
-               key: rhoarRecurringpaymentsUrl
-               name: rhoar-api-gateway-cm
-         - name: rhoarHwUrl
+               key: rhoarRaffleCreateEntryUrl
+               name: rhoar-swarm-gateway-jwt-cm
+         - name: rhoarRaffleWinnerUrl
            valueFrom:
              configMapKeyRef:
-               key: rhoarHwUrl
-               name: rhoar-api-gateway-cm       
+               key: rhoarRaffleWinnerUrl
+               name: rhoar-swarm-gateway-jwt-cm       
          - name: KEYCLOAK_AUTH_SERVER_URL
            valueFrom:
              configMapKeyRef:
                key: KEYCLOAK_AUTH_SERVER_URL
-               name: rhoar-api-gateway-cm                                   
+               name: rhoar-swarm-gateway-jwt-cm                                   
         resources:
           limits:
             cpu: 1

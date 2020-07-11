@@ -7,6 +7,6 @@
   "ssl-required": "external",
   "enable-basic-auth": "true",
   "credentials": {
-    "secret": "password"
+    "secret": "fbfdd716-ddb2-44fc-9915-956930fdce4c"
   }  
 }

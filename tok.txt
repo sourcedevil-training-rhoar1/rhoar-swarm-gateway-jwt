@@ -1,3 +1,6 @@
 curl -k  -d "client_id=rhoar-swarm-gateway-jwt" -d "username=sourcedeviluser" -d "password=password" -d "grant_type=password" https://sso-sso-evil.10.40.2.222.nip.io/auth/realms/jwt-sourcedevil/protocol/openid-connect/token
  
-curl -k  -H "Authorization: Bearer " https://finto-3scale-apicast-staging.apps:443/vocabularies?lang=en
+ 
+ 
+ 
+curl -k  -H "Authorization: Bearer " http://rhoar-swarm-gateway-jwt-jwt-sourcedevil.10.40.2.222.nip.io/api/secured/raffle-winner
