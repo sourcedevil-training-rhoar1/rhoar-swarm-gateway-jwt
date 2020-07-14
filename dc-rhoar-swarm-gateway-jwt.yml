@@ -1,0 +1,118 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  annotations:
+    fabric8.io/git-branch: master
+    fabric8.io/git-commit: 6ba197ac891e7a4c2fe8d9dd43fabc68e6b08cd7
+    fabric8.io/iconUrl: img/icons/wildfly.svg
+    fabric8.io/metrics-path: dashboard/file/kubernetes-pods.json/?var-project=rhoar-swarm-gateway-jwt&var-version=1.0
+  creationTimestamp: null
+  generation: 14
+  labels:
+    app: rhoar-swarm-gateway-jwt
+    group: com.sourcedevil.ref.rhoar.swarm.gateway.jwt
+    provider: fabric8
+    version: "1.0"
+  name: rhoar-swarm-gateway-jwt
+spec:
+  replicas: 1
+  revisionHistoryLimit: 2
+  selector:
+    app: rhoar-swarm-gateway-jwt
+    group: com.sourcedevil.ref.rhoar.swarm.gateway.jwt
+    provider: fabric8
+  strategy:
+    activeDeadlineSeconds: 21600
+    resources: {}
+    rollingParams:
+      intervalSeconds: 1
+      maxSurge: 25%
+      maxUnavailable: 25%
+      timeoutSeconds: 3600
+      updatePeriodSeconds: 1
+    type: Rolling
+  template:
+    metadata:
+      annotations:
+        fabric8.io/git-branch: master
+        fabric8.io/git-commit: 6ba197ac891e7a4c2fe8d9dd43fabc68e6b08cd7
+        fabric8.io/iconUrl: img/icons/wildfly.svg
+        fabric8.io/metrics-path: dashboard/file/kubernetes-pods.json/?var-project=rhoar-swarm-gateway-jwt&var-version=1.0
+      creationTimestamp: null
+      labels:
+        app: rhoar-swarm-gateway-jwt
+        group: com.sourcedevil.ref.rhoar.swarm.gateway.jwt
+        provider: fabric8
+        version: "1.0"
+    spec:
+      containers:
+      - env:
+        - name: rhoarRaffleCreateEntryUrl
+          valueFrom:
+            configMapKeyRef:
+              key: rhoarRaffleCreateEntryUrl
+              name: rhoar-swarm-gateway-jwt-cm
+        - name: rhoarRaffleWinnerUrl
+          valueFrom:
+            configMapKeyRef:
+              key: rhoarRaffleWinnerUrl
+              name: rhoar-swarm-gateway-jwt-cm
+        - name: KEYCLOAK_AUTH_SERVER_URL
+          valueFrom:
+            configMapKeyRef:
+              key: KEYCLOAK_AUTH_SERVER_URL
+              name: rhoar-swarm-gateway-jwt-cm
+        - name: KUBERNETES_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        image: 172.30.1.1:5000/jwt-sourcedevil/rhoar-swarm-gateway-jwt@sha256:7f8b5b95dd6afc4bdec4bd92fd76c566ec5f6883a9a59f3e9d1f12be688de604
+        imagePullPolicy: IfNotPresent
+        name: wildfly-swarm
+        ports:
+        - containerPort: 8080
+          name: http
+          protocol: TCP
+        - containerPort: 9779
+          name: prometheus
+          protocol: TCP
+        - containerPort: 8778
+          name: jolokia
+          protocol: TCP
+        resources:
+          limits:
+            cpu: "1"
+            memory: 1Gi
+          requests:
+            cpu: 200m
+            memory: 512Mi
+        securityContext:
+          privileged: false
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+  test: false
+  triggers:
+  - type: ConfigChange
+  - imageChangeParams:
+      automatic: true
+      containerNames:
+      - wildfly-swarm
+      from:
+        kind: ImageStreamTag
+        name: rhoar-swarm-gateway-jwt:1.0
+        namespace: jwt-sourcedevil
+      lastTriggeredImage: 172.30.1.1:5000/jwt-sourcedevil/rhoar-swarm-gateway-jwt@sha256:7f8b5b95dd6afc4bdec4bd92fd76c566ec5f6883a9a59f3e9d1f12be688de604
+    type: ImageChange
+status:
+  availableReplicas: 0
+  latestVersion: 0
+  observedGeneration: 0
+  replicas: 0
+  unavailableReplicas: 0
+  updatedReplicas: 0
