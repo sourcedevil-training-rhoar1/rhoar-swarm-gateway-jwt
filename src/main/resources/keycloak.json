@@ -1,6 +1,6 @@
 {
-  "realm": "jwt-sourcedevil",
-  "realm-public-key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAl3B023a8F9pXsBG0BFfxifqZckPQF+eJ2zmzgsMqoPCdw/FanlmIOqiGppyDk5ABEQEzrrXbnET7LtaBV6OzTswNSZPAMs2HtKZiuI/wG7gbCWxrl7HUW/elJHSYhmSTEYyUpePLOn01w3C0XX48p2rgPe8xiIHlUZt/I3JQky8Fg2zeK+UmdKz4xCLZGO9JDU1bgyT2+Nxpa++tbwlTOv9W8oxlYznxSaFZBtU0snYSqq+miXMWrg65KLWjSJNqsJ1jorWmy1C/U79cicRcD3L/h42vJDiFhPdONbZMkpC9u0tnYCkraIyrYMtFF2B48/wxjUOOPOqVBrf2wlDlxQIDAQAB",
+  "realm": "3scalepublic2",
+  "realm-public-key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApoCrzDQX/XIoyzZrcyYL75nv1U/jC59aAjSDbTe/5VmUEBZ4V7Fa2kMBA4CQ/Te3vXSnifZax7N9hZsRPK4MClp2egV7/CRINHRahyIHltGjY6/WsMIIgXqzFuydkeVk+U6CIK5Kq+M5yp5cdmfFP/uKkV1cyEd1FgtJtO3vkUkLFKtxXdbPZQALv5twr//cpE8AoRWOkvTaG9+7ry8F8B23XMiLXAURrXl+xo+7rEnlovCCsu5wtATEQD0I/MOtfsFS6m5mWVJjKSAYuFli4b1QK022pem5az05kJQb3yJlfoFyWl1yUczjpe9MdG0WUfSMwsoG+BacAPdTJQeMLwIDAQAB",
   "bearer-only": true,
   "enable-cors": true,
   "auth-server-url": "${env.KEYCLOAK_AUTH_SERVER_URL}",  
